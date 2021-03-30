@@ -77,8 +77,8 @@ class CastDevice extends ChangeNotifier {
                 ((X509Certificate cert, String host, int port) =>
                     trustSelfSigned);
           IOClient ioClient = new IOClient(httpClient);
-          http.Response response = await ioClient.get(
-              'https://${host}:8443/setup/eureka_info?params=name,device_info');
+          http.Response response = await ioClient.get(Uri.parse(
+              'https://${host}:8443/setup/eureka_info?params=name,device_info'));
           Map deviceInfo = jsonDecode(response.body);
 
           if (deviceInfo['name'] != null && deviceInfo['name'] != 'Unknown') {
